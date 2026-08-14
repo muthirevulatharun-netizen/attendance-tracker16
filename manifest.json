@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "MITS Attendance Tracker - Quick Analysis",
+  "short_name": "MITS Tracker",
+  "version": "2.0.0",
+  "description": "MITS student portal attendance analytics — overall stats, subject recovery, charts, and export. All data stays local in your browser.",
+  "author": "Manoj Kumar Pendem",
+  "homepage_url": "https://github.com/manojpendem/mits-attendance-tracker",
+  "content_scripts": [
+    {
+      "matches": [
+        "http://mitsims.in/*",
+        "https://mitsims.in/*"
+      ],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
