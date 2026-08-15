@@ -1,242 +1,176 @@
-# 🎓 MITS Attendance Extension -One-Click Smart Analytics Dashboard
-> ### *Smart Analytics Dashboard for MITSians*
-> *Exclusively crafted for MITS students by the Department of Data Science*
+# MITS Attendance Tracker
+
+### Developed by **Manoj Kumar Reddy** &bull; **CSE(AI & ML)**
+**Madanapalle Institute of Technology & Science**
 
 ---
 
-
-## 🚀 Project Overview
-
-
-**MITS Attendance Tracker** is a smart browser extension designed exclusively for MITS students! 🏫 Say goodbye to manual attendance — access quick, easy-to-understand reports that help you stay on top of your studies. 
-
-Developed with care by the Data Science Department, this tool empowers over 2,500 MITS students to view their attendance in real time, predict trends, and plan for improvement — all within a simple and professional app!
-
-
-> _"No more manual attendance calculations — get instant, intelligent insights that transform how you track your academic progress."_
-
-
-## 🎨 UI Design Showcase
-
-Experience the sleek and intuitive interface crafted for seamless attendance tracking.
-
-| ![Dashboard View](https://github.com/user-attachments/assets/fcc23db1-f23c-4461-9805-bd46b851739d) | ![Attendance Analytics Bar](https://github.com/user-attachments/assets/aeb1de33-10bb-4780-bf10-9f386ec4aa9f) | ![Attendance Analytics Pie](https://github.com/user-attachments/assets/6e9a72e0-820c-4225-9496-912e81d60f09) |
-|:-------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------:|
-| **Dashboard View**                                                                               | **Attendance Analytics with Bar Chart**                                                                  | **Attendance Analytics with Pie Chart**                                                                |
-
-| ![Recovery Planning](https://github.com/user-attachments/assets/37736a66-0ffd-465e-85f9-30fb42fc591b) | ![CSV Export](https://github.com/user-attachments/assets/9f0e3f2f-0fe0-4aac-b643-575401e7d87e) | ![View Analytics Button](https://github.com/user-attachments/assets/c5babb5b-9384-4b99-a3a1-8537e82650a5) |
-|:-----------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------:|
-| **Recovery Planning**                                                                               | **One-Click CSV Export**                                                                           | **View Analytics Button**                                                                                   |
-
-
-## ✨ Core Features
-
-| Feature                        | Description                                                                 |
-|-------------------------------|-----------------------------------------------------------------------------|
-| 📊 **Smart Analytics Engine** |                                                                             |
-| Real-time Calculation         | Instantly shows attendance percentage as data is fetched                    |
-| Subject-wise Breakdown        | Gives a detailed view for each subject's attendance                         |
-| AI-Powered Trend Analysis     | Predicts future attendance trends with smart algorithms                     |
-| Critical Alerts               | Notifies students when attendance falls below 65%                           |
-| Predictive Recovery Planning  | Suggests optimal class attendance plan to improve stats                     |
-| 🎨 **Premium User Experience**|                                                                             |
-| Theme Persistence             | Supports Dark/Light modes that remember your preference                     |
-| Responsive Design             | Works flawlessly across mobiles, tablets, and desktops                      |
-| Smooth UI Animations          | Enhances user interaction with clean transitions and effects                |
-| Interactive Visuals           | Uses dynamic charts for easy data interpretation                            |
-| One-click CSV Export          | Allows users to export attendance reports instantly                         |
-
+## 📌 Project Overview
+**MITS Attendance Tracker** is a state-of-the-art full-stack web application designed for students of Madanapalle Institute of Technology & Science (MITS) to track, calculate, predict, and optimize their academic class attendance directly with the live MITS portal.
 
 ---
 
-## 🛠️ Technical Excellence
+## 🚀 1-Click Deployment Guide (Prevents "Cannot GET /index.html")
 
-| Technology / Concept       | Description                                                                 |
-|----------------------------|-----------------------------------------------------------------------------|
-| 🧩 JavaScript (ES6+)        | Core scripting language for building logic and interactivity                |
-| 🎨 CSS3 (Flexbox & Grid)    | Responsive, modern layout and styling system                               |
-| 🧱 Zero-dependency Design   | Lightweight architecture with no external libraries                        |
-| ⚡ Optimized DOM Handling   | Performance-tuned for minimal reflows and repaints                         |
-| 💾 Local Storage            | Stores attendance data securely in browser memory                          |
-| 📊 Custom SVG Graphics      | Visualizes analytics through handcrafted scalable vector visuals            |
-| 🧾 manifest.json            | Defines Chrome Extension metadata, permissions, and background scripts     |
+### Option 1: Deploy on Render (Recommended for Fullstack)
+1. Go to [Render.com](https://render.com/) and click **New +** -> **Web Service**.
+2. Connect your GitHub repository: `https://github.com/manojreddyvantla/MITS-attendance-tracker.git`.
+3. Configure settings:
+   - **Environment**: `Node`
+   - **Build Command**: `npm run build`
+   - **Start Command**: `npm start`
+4. Set Environment Variables:
+   - `MITS_INTEGRATION_MODE` = `live`
+   - `JWT_SECRET` = `mits_super_secret_jwt_key_2026`
+   - `PORT` = `5000`
+5. Click **Create Web Service**. Your app is live!
 
+### Option 2: Deploy on Vercel
+1. Import repository on [Vercel](https://vercel.com/new).
+2. The included `vercel.json` and `client/public/_redirects` automatically configure API routing and SPA routing so direct URLs and page refreshes work seamlessly.
+3. Click **Deploy**.
 
 ---
 
+## ✨ Key Features
+1. **Live Student Authentication**: Direct session handshake with MITS portal using Roll Number and Password.
+2. **Real-time Attendance Sync**: Fetches up-to-date attendance for all enrolled subjects.
+3. **Attendance Calculator**: Exact integer math calculations for required consecutive classes and safe bunks.
+4. **Predictive Risk Engine**: Classifies overall and subject-level risk into SAFE, WARNING, and CRITICAL tiers.
+5. **Modern Bright UI**: Clean, high-contrast, responsive interface built with Tailwind CSS.
 
+---
 
-## 🎯 How It Works
+## 🛠️ Technology Stack
 
-### **Intelligent Processing Pipeline**
+### Frontend
+- **Framework**: React.js 18 + Vite
+- **Styling**: Tailwind CSS + Glassmorphism Aesthetics
+- **Routing**: React Router DOM v6
+- **HTTP Client**: Axios
+- **Charts**: Recharts
+- **Icons**: Lucide React
 
-```mermaid
-graph LR
-    A[MITS Portal] --> B[Data Extraction]
-    B --> C[Smart Calculations]  
-    C --> D[Visual Analytics]
-    D --> E[Insights & Recommendations]
-    E --> F[User Dashboard]
-```
+### Backend
+- **Runtime**: Node.js + Express.js
+- **Architecture**: RESTful API design
+- **Security**: Helmet, CORS, Express-Rate-Limit, Cookie-Parser, bcryptjs, JsonWebToken
 
-### 🧠 Core Algorithm
+### Database
+- **Primary**: MySQL (`database/schema.sql`)
+- **Fallback**: SQLite (zero-config local runnability)
+
+---
+
+## 📁 Project Architecture & Folder Structure
 
 ```
-  `Percentage = (Total Classes Attended / Total Classes Conducted) × 100`  
-  `Recovery Needed = Math.ceil((0.75 × Total Classes - Attended Classes) / 0.25)`  
-  `Status = Percentage ≥ 75 ? "Safe" : "Needs Improvement"`  
+mits-attendance-ai/
+├── client/                     # Vite + React Frontend
+│   ├── src/
+│   │   ├── components/         # Navbar, Sidebar, Layout, StatusBadge, ProgressBar, AIInsightCard, SubjectModal
+│   │   ├── context/            # AuthContext, ThemeContext, AttendanceContext
+│   │   ├── pages/              # Landing, Login, Dashboard, Subjects, Calculator, Prediction, Calendar, Assistant, Notifications, Profile, Settings
+│   │   ├── index.css           # Global Tailwind CSS styles
+│   │   ├── App.jsx             # Router configuration
+│   │   └── main.jsx            # Entry point
+│   ├── vite.config.js
+│   └── package.json
+├── server/                     # Node.js + Express Backend
+│   ├── config/                 # db.js (MySQL/SQLite), jwt.js
+│   ├── controllers/            # auth, student, attendance, calculator, prediction, ai, notification
+│   ├── middleware/             # authMiddleware, errorHandler
+│   ├── routes/                 # Express API routes
+│   ├── services/
+│   │   ├── mits/               # mockMitsProvider, mitsClient, mitsAuth, mitsAttendance, mitsParser
+│   │   ├── ai/                 # aiService (LLM API + context-aware fallback)
+│   │   ├── calculator/         # attendanceCalculator math engine
+│   │   └── prediction/         # riskEngine
+│   ├── tests/                  # Backend test runner and math unit tests
+│   ├── server.js               # Main Express app
+│   └── package.json
+├── database/
+│   └── schema.sql              # MySQL DDL Schema
+├── .env.example
+├── .gitignore
+├── package.json
+└── README.md
 ```
 
+---
+
+## 🚀 Quick Start & Installation
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm (v9 or higher)
+- (Optional) MySQL Server 8.0+
+
+### 1. Installation
+Run the following in the project root:
+```bash
+npm run install:all
+```
+This installs dependencies for root, server, and client.
+
+### 2. Environment Variables Setup
+Copy `.env.example` to `.env`:
+```env
+PORT=5000
+DATABASE_HOST=localhost
+DATABASE_USER=root
+DATABASE_PASSWORD=
+DATABASE_NAME=mits_attendance
+JWT_SECRET=mits_attendance_ai_jwt_secret_key_2026
+AI_API_KEY=
+MITS_INTEGRATION_MODE=mock
+```
+
+### 3. Database Setup
+- For **MySQL**: Create a database named `mits_attendance` and execute `database/schema.sql`.
+- For **SQLite Fallback**: No manual database setup required! The server will automatically initialize an SQLite database in `server/data/mits_attendance.sqlite`.
 
 ---
 
-## 📊 Feature Showcase
+## 🧪 Running Tests & Starting the Application
 
-<table>
-<tr>
-<td align="center" width="33%">
+### Run Backend Verification Tests
+```bash
+npm test
+```
 
-### 📈 **Real-Time Analytics**
-Instant attendance percentage calculation with subject-wise breakdown and trend analysis
+### Start Backend Server
+```bash
+npm run server
+```
+Server runs at: `http://localhost:5000`
 
-</td>
-<td align="center" width="33%">
-
-### 🎯 **Recovery Planning**  
-Smart algorithm calculates exact classes needed to reach 75% attendance threshold
-
-</td>
-<td align="center" width="33%">
-
-### 📊 **Visual Insights**
-Interactive charts, progress rings, and data visualizations for better understanding
-
-</td>
-</tr>
-</table>
+### Start Frontend Application
+```bash
+npm run client
+```
+Client runs at: `http://localhost:5173`
 
 ---
 
-## 🎓 Core Benefits for MITSians
-
-| **Benefit**        | **What You Get**                                                                                  |
-|--------------------|-------------------------------------------------------------------------------------------------|
-| ⏰ Time-Saving      | No more manual calculations — check your attendance instantly with a single click               |
-| 🎯 Goal Tracking    | Clear progress tracking towards the crucial 75% attendance benchmark                             |
-| 📊 Data-Driven      | Instant feedback on your current attendance percentage to make smart decisions                   |
-| 🔄 Recovery Planning| Personalized guidance on how many classes to attend to get back on track                         |
-| 🚫 Error-Free       | Zero manual errors — enjoy 100% accurate and reliable attendance tracking                        |
-| ⚡ Stress-Free      | Simplified, anxiety-free attendance management for every student                                |
+## 🔒 MITS Integration & Security Compliance
+- The MITS provider in `server/services/mits/` retrieves permitted attendance data.
+- Never stores student MITS passwords in plaintext.
+- Does not bypass CAPTCHA, OTP, or security mechanisms.
+- Features high-fidelity sample data for 6 CSE-AI/ML subjects in mock mode (`MITS_INTEGRATION_MODE=mock`).
 
 ---
 
-## 📥 One-Click Setup Guide
+## 📡 REST API Documentation
 
-Get started in under a minute — no coding required!
-
-### 🌐 Install on Chrome / Edge (v2.0)
-<details>
-<summary> <strong>Launch Extension in Chromium Browsers</strong></summary>
-
-1. 🔽 Use this folder: `mits attendance traker` (contains `manifest.json`, `content.js`, `styles.css`)
-2. 🧭 Open your browser and head to `chrome://extensions/`
-3. 🛠️ Toggle on **Developer Mode** (top-right switch)
-4. 📂 Click **Load Unpacked** and select the extension folder
-5. 🌐 Log in to [mitsims.in](http://mitsims.in) and open the student attendance page (`studentIndex.html`)
-6. 📊 Wait for the **Attendance Analytics** button to appear, then click it to open the dashboard
-7. 🔄 After code updates: click **Reload** on the extension card, then refresh the portal page
-
-</details>
-
-### ✨ v2.0 New Features
-- Modern glassmorphism analytics dashboard
-- 75%, 80%, and 85% attendance goal calculator
-- **Can I Skip?** calculator (subjects above 75%)
-- Attendance forecast with custom input
-- Critical subject detection (CRITICAL / WARNING badges)
-- Quick summary, motivation messages, copy summary
-- Horizontal subject comparison chart + bar + donut charts
-- Print / Save as PDF via browser print
-- Improved CSV export with full subject details
-- Dark / light theme persistence
-- Responsive design and accessibility (ARIA, Escape to close)
-
-### 🦊 Install on Firefox
-<details>
-<summary>  <strong>Temporary Load in Firefox for Testing</strong></summary>
-
-1. 🔽 **Download** the extension code from this repo  
-2. 🌐 Go to `about:debugging` in your Firefox browser  
-3. 🔍 Choose **This Firefox** → click **Load Temporary Add-on**  
-4. 📄 Select the `manifest.json` file from the extension folder  
-5. ✅ Extension is now live for your current session  
-</details>
-
->🔒 *Note: Firefox only supports temporary extensions in development mode. For persistent use, submit to Mozilla Add-ons.*
-
-
----
-
-
-
-## Join the Journey 🤝 
-
-We’re excited to have the `MITS community` help make this project better! 🎉🚀
-
-
-- 🐞 Report Bugs: Spot a problem? Let us know!
-- 💡 Suggest Features: Got ideas to improve the app? Share them!
-- 🛠️ Code Improvements: Submit your code updates or fixes.
-- 📖 Improve Docs: Help us make guides clearer and easier to follow.
-
-Every bit counts. Ready to make an impact? Let’s go! 💪
-
- ---
-
-## 📋 FAQ & Support
-
-<details>
-<summary><strong>❓ Is this extension safe to use?</strong></summary>
-<br>
-Absolutely! The extension only reads publicly available data from your MITS portal and operates entirely within your browser. No personal data is stored externally or transmitted to third parties.
-</details>
-
-<details>
-<summary><strong>❓ Will this work on mobile browsers?</strong></summary>
-<br>
-The interface is fully responsive and mobile-optimized. However, browser extension support varies by mobile browser platform.
-</details>
-
-
-<details>
-<summary><strong>❓ How is my data protected?</strong></summary>
-<br>
-Your data never leaves your browser. All calculations and storage happen locally on your device for maximum privacy and security.
-</details>
-
----
-### **🎯 Mission Statement**
-> *"Helping every MITS student easily track and improve their attendance to achieve academic success with smart, easy-to-use tools."*
-
-
-## 👨‍💻 Development Team
-
-<div align="center">
-
-### **🌟 Manoj Kumar Pendem**  
-**Web Developer | Department of Data Science | MITS**
-
->*Passionate about leveraging technology to enhance student experiences*
-
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-6e40c9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Manojkumar2806) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077b5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/manoj-kumar-pendem/) [![Email](https://img.shields.io/badge/Email-Contact-d14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:23691A3279@mits.ac.in)
-
----
-
-❤️ Thanks for visiting! Your support means a lot. Keep shining and stay curious!
-
-⭐ If you find this repo helpful, please give it a star!
-</div>
-
----
-
-</div>
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/auth/login` | Authenticate user & issue JWT |
+| `POST` | `/api/auth/register` | Register new student profile |
+| `GET` | `/api/attendance` | Fetch all subject attendance records |
+| `GET` | `/api/attendance/overall` | Fetch overall percentage & metrics |
+| `POST` | `/api/attendance/sync` | Trigger MITS provider attendance sync |
+| `POST` | `/api/attendance/calculate` | Compute exact safe bunks & required classes |
+| `POST` | `/api/attendance/predict` | Generate risk tier and recovery advice |
+| `POST` | `/api/ai/chat` | Send prompt to ChatGPT-style assistant |
+| `GET` | `/api/notifications` | Fetch unread notifications |
