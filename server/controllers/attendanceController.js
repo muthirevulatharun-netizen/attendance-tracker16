@@ -32,12 +32,13 @@ async function getAttendance(req, res, next) {
     // Ensure Aptitude and Softskills are present
     const hasApt = rows.some(r => r.subject_code === 'APTITUDE');
     const hasSoft = rows.some(r => r.subject_code === 'SOFTSKILLS');
-    const nowStr = new Date().toISOString();
 
     if (!hasApt || !hasSoft) {
       const mockData = await fetchMockAttendance(req.user.rollNumber);
       const mockApt = mockData.subjects.find(s => s.subjectCode === 'APTITUDE') || { attendedClasses: 12, absentClasses: 2, totalClasses: 14, attendancePercentage: 85.71 };
       const mockSoft = mockData.subjects.find(s => s.subjectCode === 'SOFTSKILLS') || { attendedClasses: 10, absentClasses: 2, totalClasses: 12, attendancePercentage: 83.33 };
+
+      const nowStr = new Date().toISOString();
 
       if (!hasApt) {
         const attId = `att-${studentId}-aptitude`;
@@ -89,8 +90,6 @@ async function getAttendance(req, res, next) {
       };
     });
 
-    require('fs').writeFileSync('C:\\TRACKER\\server\\scratch\\debug_attendance.json', JSON.stringify({studentId, hasApt, hasSoft, count: subjects.length, subjects}, null, 2));
-
     res.json({
       success: true,
       subjects,
@@ -118,12 +117,13 @@ async function getOverallAttendance(req, res, next) {
     const softRow = rows.find(r => r.subject_code === 'SOFTSKILLS');
     const hasApt = aptRow && parseInt(aptRow.total_classes, 10) > 0;
     const hasSoft = softRow && parseInt(softRow.total_classes, 10) > 0;
-    const nowStr = new Date().toISOString();
 
     if (!hasApt || !hasSoft) {
       const mockData = await fetchMockAttendance(req.user.rollNumber);
       const mockApt = mockData.subjects.find(s => s.subjectCode === 'APTITUDE') || { attendedClasses: 12, absentClasses: 2, totalClasses: 14, attendancePercentage: 85.71 };
       const mockSoft = mockData.subjects.find(s => s.subjectCode === 'SOFTSKILLS') || { attendedClasses: 10, absentClasses: 2, totalClasses: 12, attendancePercentage: 83.33 };
+
+      const nowStr = new Date().toISOString();
 
       if (!hasApt) {
         await db.query(
@@ -323,12 +323,21 @@ async function syncAttendance(req, res, next) {
   try {
     const studentId = req.user.id;
     const rollNumber = req.user.rollNumber;
+    const { password } = req.body;
+
+    if (!password) {
+      return res.status(400).json({
+        success: false,
+        message: "MITS password is required to sync attendance."
+      });
+    }
+
     const targetPct = await getTargetAttendance(studentId);
 
-    // Call MITS service provider
-    const mitsResult = await mitsService.getAttendance(rollNumber);
+    // Call MITS service provider (pass password)
+    const mitsResult = await mitsService.getAttendance(rollNumber, password);
 
-    if (!mitsResult.success || !mitsResult.subjects) {
+    if (!mitsResult || !mitsResult.success || !mitsResult.subjects) {
       return res.status(503).json({
         success: false,
         message: "MITS IMS is currently unavailable. Showing your last available attendance."
